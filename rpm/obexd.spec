@@ -11,9 +11,11 @@ Source2:    obexd.conf
 BuildRequires:  automake, libtool
 BuildRequires:  pkgconfig(glib-2.0)
 BuildRequires:  pkgconfig(dbus-1)
-BuildRequires:  pkgconfig(bluez) >= 4.0
+BuildRequires:  pkgconfig(bluez) < 5.0
 BuildRequires:  pkgconfig(libical)
 Requires:       obex-capability
+Requires:       bluez-libs
+Conflicts:      bluez5-libs
 
 %description
 obexd contains obex-client, a D-Bus service to allow sending files
@@ -25,6 +27,8 @@ other Bluetooth-equipped devices.
 Summary:    a server for incoming OBEX connections
 Group:      System/Daemons
 Requires:   %{name} = %{version}-%{release}
+Requires:   bluez-libs
+Conflicts:  bluez5-libs
 
 %description server
 obexd-server contains a server for receiving OBEX operations.
